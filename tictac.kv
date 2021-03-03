@@ -1,0 +1,134 @@
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+
+<Button>:
+    background_normal: ''
+    background_color: (20/255, 189/255, 172/255, 1)
+    font_size: '180sp'
+<BoxLayout>:
+    spacing: 0.2463
+WindowManager:
+    window: window
+    id: window
+    transition: NoTransition()
+    NormalScreen:
+    WinScreen:
+
+# ------------------------------------------normal screen---------------------------------------------------------------
+<NormalScreen>:
+    name: 'normal'
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: 0.3
+            spacing: 10
+
+            MDRoundFlatButton:
+                id: score_x
+                text: 'X                                                    -'
+                font_size: '20sp'
+                pos_hint: {'center_y': 0.5, 'center_x': 0.5}
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+                line_color: (1, 0, 1, 1)
+                elevation_normal: 50
+
+            Button:
+                id: turn
+                text: 'X  Turn'
+                disabled: True
+                color: (150/255, 150/255, 150/255, 1)
+                font_size: '15sp'
+                background_disabled_normal: ''
+                background_color: (250/255, 250/255, 250/255, 1)
+
+            MDRoundFlatButton:
+                id: score_o
+                text: 'O                                                     -'
+                font_size: '20sp'
+                pos_hint: {'center_y': 0.5, 'center_x': 0.5}
+                theme_text_color: "Custom"
+                text_color: 0, 0, 0, 1
+                disabled: True
+
+
+        # rows and columns
+        BoxLayout:
+            # row 1
+            Button:
+                id: a
+                text: ''
+
+                on_release: app.button_pressed('a')
+            Button:
+                id: b
+                text: ''
+                on_release: app.button_pressed('b')
+            Button:
+                id: c
+                text: ''
+                on_release: app.button_pressed('c')
+
+        BoxLayout:
+            # row 2
+            Button:
+                id: d
+                text: ''
+                on_release: app.button_pressed('d')
+
+            Button:
+                id: e
+                text: ''
+                on_release: app.button_pressed('e')
+
+            Button:
+                id: f
+                text: ''
+                on_release: app.button_pressed('f')
+
+        BoxLayout:
+            # row 3
+            Button:
+                id: g
+                text: ''
+                on_release: app.button_pressed('g')
+
+            Button:
+                id: h
+                text: ''
+                on_release: app.button_pressed('h')
+            Button:
+                id: i
+                text: ''
+                on_release: app.button_pressed('i')
+
+
+        BoxLayout:
+            size_hint_y: 0.3
+
+            Button:
+                text: 'RESTART GAME'
+                font_size: '20sp'
+                color: (20/255, 189/255, 172/255, 1)
+                background_color: (242/255, 235/255, 211/255, 1)
+                on_release: app.restart_game()
+            Button:
+                text: 'QUIT'
+                font_size: '20sp'
+                color: (20/255, 189/255, 172/255, 1)
+                background_color: (242/255, 235/255, 211/255, 1)
+                on_release: app.quit()
+
+
+#--------------------------------------------------win screen-----------------------------------------------------------
+<WinScreen>:
+    name: 'win'
+    BoxLayout:
+        Button:
+            id: win
+            background_normal: ''
+            background_color: (20/255, 189/255, 172/255, 1)
+            # color: (84 / 255, 84 / 255, 84 / 255, 1)
+            halign: 'center'
+            markup: True
+            on_release:
+                root.manager.current = 'normal'
